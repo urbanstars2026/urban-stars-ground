@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Request
 
 app = FastAPI()
 
@@ -17,3 +17,9 @@ def verify(
 @app.get("/")
 def health():
     return {"status": "running"}
+
+@app.post("/webhook")
+async def webhook(request: Request):
+    body = await request.json()
+    print("📩 New Message Received:", body)
+    return {"status": "ok"}
