@@ -13,3 +13,7 @@ def verify(
     if hub_mode == "subscribe" and hub_verify_token == VERIFY_TOKEN:
         return int(hub_challenge)  # WhatsApp expects exact value
     return "Verification failed"
+
+@app.get("/")
+def health():
+    return {"status": "running"}
